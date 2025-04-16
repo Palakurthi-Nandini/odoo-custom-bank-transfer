@@ -1,0 +1,40 @@
+<odoo>
+    <template id="assets_frontend" inherit_id="website.assets_frontend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/payment_bank_transfer_custom/static/src/js/popup.js"></script>
+        </xpath>
+    </template>
+
+    <template id="bank_transfer_popup">
+        <div id="bank_transfer_modal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content p-3">
+                    <h4>Transfer to Bank (NEFT/IMPS)</h4>
+                    <p><strong>Bank Name:</strong> HDFC Bank</p>
+                    <p><strong>Account Number:</strong> 1234567890</p>
+                    <p><strong>IFSC:</strong> HDFC0001234</p>
+                    <p><strong>Branch:</strong> MG Road, Bangalore</p>
+                    <p><strong>Amount:</strong> <span id="order_amount"></span></p>
+                    <img src="/web/image?model=ir.attachment&id=1&field=datas" width="200"/>
+
+                    <form action="/bank_transfer/submit" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="order_id" id="order_id" />
+                        <div class="form-group">
+                            <label>Transfer Reference</label>
+                            <input type="text" name="transfer_reference" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Screenshot</label>
+                            <input type="file" name="screenshot" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Comment</label>
+                            <textarea name="comment" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>
